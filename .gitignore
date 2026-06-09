@@ -1,0 +1,47 @@
+# .gitignore for Martins Over the Bluegrass static site
+# Keeps your local repo clean. Vercel uses .vercelignore for deploys.
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+*.log
+
+# Local Vercel
+.vercel/
+
+# Dependencies (if you ever add any)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build / output (not used here, but future-proof)
+dist/
+build/
+out/
+
+# Raw / unoptimized assets (keep these locally only)
+# images/raw/
+# *.psd
+# *.ai
+# *.heic
+# *.mov
+# *.mp4
+
+# Environment / secrets (never commit these)
+.env
+.env.local
+.env.*.local
+
+# Large original phone dumps / working files (we already curated images/)
+# Leave commented unless you re-add raw sources
+# IMG_*.jpg
+# *.HEIC
+# image*.jpg
+# 1a.jpg
+# Back.png
+# Front.png

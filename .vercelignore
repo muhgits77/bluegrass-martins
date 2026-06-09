@@ -1,0 +1,32 @@
+# .vercelignore
+# Files and folders that should NOT be deployed to Vercel.
+# Keeps the deployment small, clean, and fast.
+
+# Version control
+.git
+.gitignore
+
+# Vercel local
+.vercel
+
+# macOS / Windows junk
+.DS_Store
+Thumbs.db
+
+# Documentation / notes (safe to keep locally, not needed in prod)
+*.md
+!README.md   # Uncomment if you ever add a production README you want deployed
+
+# Development / editor
+.idea
+.vscode
+*.swp
+*.swo
+
+# Any future build artifacts or large unused files
+node_modules
+dist
+build
+
+# Large unused original assets (uncomment only if you decide to stop shipping rack-barn-sunny.jpg)
+# images/rack-barn-sunny.jpg

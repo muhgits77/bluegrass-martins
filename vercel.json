@@ -1,0 +1,104 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+
+  "//": "==========================================================================",
+  "//  Martins Over the Bluegrass — Vercel Static Hosting Configuration",
+  "//  Optimized for fast, clean, production-grade deployment of a single-page",
+  "//  static site (index.html + images/ folder).",
+  "//",
+  "//  Key features:",
+  "//   • Strong security headers (X-Content-Type-Options, frame protection, etc.)",
+  "//   • Long-term immutable caching for images (best performance for photos)",
+  "//   • Conservative caching for HTML so updates are visible quickly",
+  "//   • Catch-all rewrite so direct navigation / refresh never 404s",
+  "//     (harmless for this hash-based single-page site; assets still served first)",
+  "//   • No build step — pure static files served instantly by Vercel's edge",
+  "//",
+  "//  Deployment:",
+  "//   • Connect repo to Vercel → it will auto-detect static output",
+  "//   • Or: vercel --prod",
+  "//   • After first deploy, update the placeholder domain in index.html",
+  "//     (og:url, canonical, og/twitter:image absolute URLs) for perfect social cards.",
+  "//==========================================================================",
+
+  "framework": null,
+  "buildCommand": null,
+  "devCommand": null,
+  "outputDirectory": ".",
+
+  "headers": [
+    {
+      "//": "Global security headers for every response",
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        },
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        }
+      ]
+    },
+    {
+      "//": "Aggressive, immutable cache for all images — they almost never change",
+      "//": "This is one of the highest-impact performance wins for a photo-heavy site",
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        },
+        {
+          "key": "CDN-Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "//": "HTML should be revalidated quickly so content updates appear fast",
+      "source": "/index.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "//": "Also apply reasonable cache to the root path (serves index.html)",
+      "source": "/",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+
+  "rewrites": [
+    {
+      "//": "Serve index.html for any path that doesn't match a real file.",
+      "//": "This guarantees zero 404s on refresh, direct links, or mistyped paths.",
+      "//": "Static assets (/images/*, etc.) are still served exactly by Vercel before rewrites.",
+      "//": "Safe and recommended for single-file static marketing sites.",
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

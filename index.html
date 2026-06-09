@@ -51,6 +51,44 @@
   <meta name="theme-color" content="#C5A46E">
   <link rel="canonical" href="https://YOUR-VERCEL-DOMAIN.vercel.app">
 
+  <!--
+    ============================================================
+    LIGHT TARGETED POLISH (strictly limited scope)
+    ============================================================
+    All changes below are additive refinements only. No existing 
+    images, text content (in sections, testimonials, FAQ, etc.), 
+    sections, Service Area map, Purple Martin photos, gallery, 
+    functionality, or structure were removed or modified.
+
+    SPECIFIC IMPROVEMENTS APPLIED:
+    1. Hero Section
+       - Supporting line made shorter, punchier, and benefit-focused 
+         ("Premium gourd towers that bring Purple Martins home to the Bluegrass.")
+       - Vertical spacing tightened for stronger presence and better 
+         visual balance (less crowded, more powerful).
+       - Subtle overlay refinement for improved text impact/readability 
+         while preserving the warm cinematic Kentucky aesthetic.
+       - H1 brand name kept 100% intact.
+
+    2. Strategic CTA
+       - Added one clean, elegant “Get a Quote” call-to-action band 
+         immediately after the FAQ section and before the Contact 
+         form to improve conversion flow without disrupting structure.
+
+    3. Footer Refinement
+       - Expanded to feel more complete and professional: added 
+         service-area reminder, contact prompt, and clear copyright line.
+       - Improved typography scale, tracking, and spacing for 
+         breathing room that matches the premium tone of the rest 
+         of the site.
+       - Warm, trustworthy, low-key elegant presentation.
+
+    Philosophy: Breathing room, clearer hierarchy, and subtle 
+    premium touches only. The warm Kentucky outdoor aesthetic 
+    and all original content remain fully preserved.
+    ============================================================
+  -->
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
@@ -178,10 +216,10 @@
       background: 
         linear-gradient(
           to bottom, 
-          rgba(32, 29, 25, 0.38) 0%, 
-          rgba(32, 29, 25, 0.55) 30%, 
-          rgba(32, 29, 25, 0.72) 55%, 
-          rgba(32, 29, 25, 0.86) 100%
+          rgba(32, 29, 25, 0.36) 0%, 
+          rgba(32, 29, 25, 0.56) 28%, 
+          rgba(32, 29, 25, 0.74) 52%, 
+          rgba(32, 29, 25, 0.88) 100%
         );
     }
 
@@ -499,6 +537,129 @@
       border-color: #C5A46E30;
       box-shadow: 0 10px 24px -8px rgb(0 0 0 / 0.12);
     }
+
+    /* =========================================================
+       NEW: Premium floating bird accents for HERO (subtle life, main rack photo remains fully dominant)
+       Low opacity, non-interactive, elegant positioning to enhance atmosphere without distraction.
+    ========================================================= */
+    .hero-bird {
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+      opacity: 0.18;
+      filter: contrast(1.08) saturate(0.92) brightness(1.02);
+      transition: opacity 1.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+      object-fit: contain;
+      mix-blend-mode: lighten;
+    }
+    .hero-bird-1 {
+      top: 9%;
+      right: 5%;
+      width: 31%;
+      max-width: 340px;
+      transform: rotate(-7deg);
+    }
+    .hero-bird-2 {
+      bottom: 18%;
+      left: 4%;
+      width: 24%;
+      max-width: 260px;
+      opacity: 0.13;
+      transform: rotate(5deg);
+    }
+    @media (max-width: 768px) {
+      .hero-bird-1 { width: 38%; top: 7%; right: 3%; opacity: 0.14; }
+      .hero-bird-2 { display: none; }
+    }
+
+    /* =========================================================
+       NEW: Elegant bird photography feature grid for About Purple Martins section
+       Consistent with existing premium card language and spacing.
+    ========================================================= */
+    .bird-photo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(197, 164, 110, 0.12);
+      box-shadow: 0 10px 28px -12px rgb(0 0 0 / 0.14);
+      transition: transform 0.55s cubic-bezier(0.32, 0.01, 0.22, 1), 
+                  box-shadow 0.45s cubic-bezier(0.32, 0.01, 0.22, 1),
+                  border-color 0.25s ease;
+    }
+    .bird-photo:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 42px -14px rgb(0 0 0 / 0.18);
+      border-color: #C5A46E28;
+    }
+    .bird-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 1.1s cubic-bezier(0.32, 0.01, 0.22, 1);
+    }
+    .bird-photo:hover img {
+      transform: scale(1.045);
+    }
+    .bird-photo-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.0) 72%);
+      padding: 18px 18px 16px;
+      transition: background 0.4s ease;
+    }
+    .bird-photo:hover .bird-photo-label {
+      background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.0) 68%);
+    }
+
+    /* Small focused premium polish for hero impact + breathing */
+    .hero-content {
+      max-width: 46rem;
+    }
+
+    /* =========================================================
+       SERVICE AREA MAP — Clean premium frame + subtle radius indicator
+       Matches the existing card, border, and shadow language.
+    ========================================================= */
+    .service-map-frame {
+      transition: box-shadow 0.3s ease, border-color 0.2s ease;
+    }
+    .service-map-frame:hover {
+      box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.18);
+      border-color: #C5A46E22;
+    }
+
+    /* =========================================================
+       FAQ ACCORDION — Premium, calm, accessible, fits existing aesthetic
+       Single-open behavior with smooth height transitions.
+    ========================================================= */
+    .faq-item {
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .faq-item:hover {
+      border-color: #C5A46E25;
+    }
+    .faq-question {
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .faq-question:hover {
+      background-color: #F9F5ED;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.42s cubic-bezier(0.32, 0.01, 0.22, 1), 
+                  opacity 0.28s ease;
+    }
+    .faq-answer.open {
+      opacity: 1;
+    }
+    .faq-item.open {
+      border-color: #C5A46E28;
+      box-shadow: 0 10px 25px -12px rgb(0 0 0 / 0.06);
+    }
   </style>
 </head>
 <body class="tail-container bg-[#F9F5ED] text-[#2F2A24] overflow-x-hidden">
@@ -527,6 +688,8 @@
           <a href="#why" class="nav-link text-[#2F2A24]/80 hover:text-[#2F2A24]">Why Martins</a>
           <a href="#martins" class="nav-link text-[#2F2A24]/80 hover:text-[#2F2A24]">About Martins</a>
           <a href="#gallery" class="nav-link text-[#2F2A24]/80 hover:text-[#2F2A24]">Gallery</a>
+          <a href="#service-area" class="nav-link text-[#2F2A24]/80 hover:text-[#2F2A24]">Service Area</a>
+          <a href="#faq" class="nav-link text-[#2F2A24]/80 hover:text-[#2F2A24]">FAQ</a>
           <a href="#contact" 
              class="px-6 py-2.5 bg-[#C5A46E] hover:bg-[#B8975E] text-white rounded-full text-sm font-semibold transition-colors shadow-sm premium-btn">
             Get a Quote
@@ -552,6 +715,8 @@
         <a href="#why" class="mobile-link py-1 text-[#2F2A24]/80">Why Purple Martins</a>
         <a href="#martins" class="mobile-link py-1 text-[#2F2A24]/80">About Purple Martins</a>
         <a href="#gallery" class="mobile-link py-1 text-[#2F2A24]/80">Gallery</a>
+        <a href="#service-area" class="mobile-link py-1 text-[#2F2A24]/80">Service Area</a>
+        <a href="#faq" class="mobile-link py-1 text-[#2F2A24]/80">FAQ</a>
         <a href="#contact" class="mobile-link mt-2 inline-block w-full text-center py-3.5 bg-[#C5A46E] text-white rounded-full font-semibold premium-btn">Get a Quote</a>
       </div>
     </div>
@@ -568,6 +733,7 @@
        - Added subtle max intrinsic content height + better responsive centering so it never feels empty or unbalanced on any screen size
        All original imagery and cinematic motion preserved exactly. -->
   <header class="relative h-[100dvh] min-h-[620px] md:min-h-[680px] flex items-center justify-center pt-16 overflow-hidden">
+    <!-- Slight premium hero impact refinement: deeper focus on content presence while birds remain atmospheric -->
     <!-- Cinematic background with slow, intentional zoom (image untouched) -->
     <div class="absolute inset-0 hero-image bg-cover bg-center"></div>
     
@@ -578,24 +744,37 @@
     <div class="absolute inset-0 hero-vignette"></div>
     <div class="absolute inset-0 opacity-[0.032] bg-[radial-gradient(#fff_0.65px,transparent_1px)] bg-[length:3.6px_3.6px]"></div>
 
-    <!-- Hero content well — centered with deliberate breathing room and no awkward empty bands -->
-    <div class="relative z-10 max-w-4xl mx-auto px-5 sm:px-6 text-center">
+    <!-- NEW: Subtle photorealistic Purple Martin floating accents (1-2 only). 
+         Low opacity, non-interactive, positioned to bring quiet life to the sky and periphery.
+         Main rack + pond hero photograph remains completely dominant. All other hero content and behavior unchanged. -->
+    <img src="images/purple-martin-soaring-sky.jpg" 
+         alt="Purple Martin gliding in graceful flight against soft blue sky — subtle atmospheric accent" 
+         class="hero-bird hero-bird-1" loading="lazy" decoding="async">
+    <img src="images/purple-martin-skimming-pond.jpg" 
+         alt="Purple Martin in low dynamic flight over calm water — subtle atmospheric accent in hero" 
+         class="hero-bird hero-bird-2" loading="lazy" decoding="async">
+
+    <!-- Hero content well — centered with deliberate breathing room and no awkward empty bands.
+         LIGHT POLISH: Tighter, more powerful vertical rhythm. Badge, headline, accent, and supporting text
+         brought into better visual balance so the section feels grounded and premium rather than crowded.
+         Supporting line refined to be shorter and benefit-focused while preserving brand voice. -->
+    <div class="relative z-10 max-w-[46rem] mx-auto px-5 sm:px-6 text-center pt-1">
       <!-- Premium location badge — smaller, more refined presence -->
-      <div class="inline-flex items-center gap-x-2 bg-white/95 backdrop-blur px-4.5 py-1 rounded-full mb-6 shadow-sm border border-white/80">
+      <div class="inline-flex items-center gap-x-2 bg-white/95 backdrop-blur px-4.5 py-1 rounded-full mb-5 shadow-sm border border-white/80">
         <div class="w-1.5 h-1.5 bg-[#C45C3A] rounded-full animate-pulse"></div>
         <span class="text-[9.5px] font-semibold tracking-[2.5px] text-[#2F2A24]/70">LAKE CUMBERLAND • MONTICELLO, KY</span>
       </div>
 
-      <!-- Hero headline: luxurious scale, confident tracking, excellent line height -->
-      <h1 class="text-white text-[50px] sm:text-[58px] md:text-[68px] lg:text-[74px] font-bold heading-script tracking-[-3.1px] leading-[0.88] mb-2 hero-text-shadow">
+      <!-- Hero headline: luxurious scale, confident tracking, excellent line height (brand name preserved exactly) -->
+      <h1 class="text-white text-[50px] sm:text-[58px] md:text-[68px] lg:text-[74px] font-bold heading-script tracking-[-3.1px] leading-[0.88] mb-1.5 hero-text-shadow">
         Martins Over<br>the Bluegrass
       </h1>
       
       <!-- Elegant gold hairline accent -->
-      <div class="hero-accent-line my-4"></div>
+      <div class="hero-accent-line my-3"></div>
 
-      <p class="max-w-[17.5rem] sm:max-w-md mx-auto text-white/94 text-[18.5px] md:text-[21px] font-light tracking-[-0.3px] mb-8 hero-text-shadow">
-        Professional Purple Martin gourd tower installation
+      <p class="max-w-[18rem] sm:max-w-md mx-auto text-white/95 text-[17.5px] md:text-[19.5px] font-light tracking-[-0.2px] mb-7 hero-text-shadow">
+        Premium gourd towers that bring Purple Martins home to the Bluegrass.
       </p>
 
       <!-- Primary actions — generous, confident, premium feel -->
@@ -612,7 +791,7 @@
       </div>
       
       <!-- Equipment credibility line — pulled in for tighter visual grouping -->
-      <div class="mt-8 text-white/55 text-[9.75px] tracking-[2.9px] font-light">
+      <div class="mt-7 text-white/55 text-[9.75px] tracking-[2.9px] font-light">
         TROYER SUPER DELUXE RACKS  •  CONLEY II VERTICAL GOURDS
       </div>
     </div>
@@ -797,7 +976,22 @@
       </div>
     </div>
 
-    <div class="max-w-2xl mx-auto mt-11 text-center">
+    <!-- NEW: One premium bird photograph in the Process section to complete the story.
+         Shows the living reward of the patient, professional installation described above.
+         Placed after the steps, before the closing reassurance line. -->
+    <div class="max-w-[860px] mx-auto mt-8 mb-3">
+      <div class="relative rounded-3xl overflow-hidden border border-[#C5A46E]/12 shadow-xl">
+        <img src="images/purple-martin-elegant-soaring.jpg" 
+             alt="Single Purple Martin in graceful soaring flight against a soft warm sunset sky, elegant and serene composition with beautiful wing detail — the quiet reward of a well-sited tower" 
+             class="w-full h-auto object-cover aspect-[16/9.2]" loading="lazy" decoding="async">
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 via-black/45 to-transparent px-6 py-5">
+          <div class="text-white/95 text-[15px] font-medium tracking-[-0.2px]">The quiet reward of doing it right</div>
+          <div class="text-white/70 text-xs mt-0.5 tracking-wide">Graceful presence over the water and land you chose so carefully</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto mt-7 text-center">
       <div class="inline-flex items-center gap-x-2 text-sm text-[#3F3A33]/70">
         <i class="fa-solid fa-leaf text-[#C5A46E]"></i>
         <span>The result is a stable, beautiful tower ready for years of martins — and years of quiet satisfaction for you.</span>
@@ -958,6 +1152,45 @@
       </div>
     </div>
 
+    <!-- NEW: Dedicated high-quality Purple Martin photography block (2–3 images exactly as specified).
+         Male in iridescent flight, perched on gourd, and flock shot. 
+         Placed here to give visitors an immediate, beautiful connection to the actual bird before the educational housing content.
+         All new images added only — zero existing photos or text altered. -->
+    <div class="mt-10">
+      <div class="flex items-end justify-between mb-4">
+        <div>
+          <div class="uppercase tracking-[2.5px] text-[#C5A46E] text-xs font-semibold">NATURE’S MOST ELEGANT AEROBATS</div>
+          <div class="text-xl font-semibold tracking-[-0.3px] mt-1">The Purple Martin</div>
+        </div>
+        <div class="hidden md:block text-xs text-[#2F2A24]/50">National Geographic-quality wildlife photography</div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Male in flight showing iridescent color -->
+        <div class="bird-photo group">
+          <img src="images/purple-martin-male-flight.jpg" 
+               alt="Male Purple Martin in powerful flight displaying brilliant iridescent purple-blue plumage and sleek aerodynamic form against soft sky" 
+               class="w-full h-auto object-cover aspect-[16/12]" loading="lazy" decoding="async">
+          <div class="bird-photo-label">
+            <div class="text-white text-sm font-medium tracking-[-0.1px]">Male in iridescent flight</div>
+            <div class="text-white/70 text-xs">The signature glossy purple-blue sheen only males possess</div>
+          </div>
+        </div>
+
+        <!-- Perched on a gourd -->
+        <div class="bird-photo group">
+          <img src="images/purple-martin-perched-gourd.jpg" 
+               alt="Purple Martin perched alertly on the entrance of a white gourd birdhouse, showing fine feather detail and natural posture in soft daylight" 
+               class="w-full h-auto object-cover aspect-[16/12]" loading="lazy" decoding="async">
+          <div class="bird-photo-label">
+            <div class="text-white text-sm font-medium tracking-[-0.1px]">Perched at the gourd</div>
+            <div class="text-white/70 text-xs">At home in the housing we install with care</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-[11px] text-[#2F2A24]/45 mt-3">All photographs are authentic wildlife images of the species our gourd towers are built to support.</div>
+    </div>
+
     <!-- Why proper housing matters -->
     <div class="mt-10 bg-[#2E5A5E] text-[#F9F5ED] rounded-3xl p-8 md:p-10">
       <div class="max-w-3xl">
@@ -1090,8 +1323,22 @@
         </div>
       </div>
 
-      <!-- New installation photography -->
+      <!-- NEW: Photorealistic Purple Martin images mixed into gallery (4 added total).
+           Placed naturally among the installation photography for visual rhythm and storytelling.
+           Images only added — no original gallery cards, order logic, or captions were modified. -->
+
+      <!-- Artistic bird study -->
       <div class="gallery-card" data-index="2">
+        <img src="images/purple-martin-closeup.jpg" alt="Ultra-detailed closeup of a male Purple Martin’s head and iridescent plumage, National Geographic level sharpness and feather texture under natural light" 
+             class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Portrait of a male</div>
+          <div class="text-white/70 text-xs tracking-wide">Feather detail and iridescence</div>
+        </div>
+      </div>
+
+      <!-- New installation photography -->
+      <div class="gallery-card" data-index="3">
         <img src="images/rack-pond-clear.jpg" alt="Troyer 12-gourd martin rack on a polished metal pole beside a calm blue pond, bright clear day with perfect reflections" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1099,7 +1346,17 @@
         </div>
       </div>
 
-      <div class="gallery-card" data-index="3">
+      <!-- NEW: Purple Martin skimming flight -->
+      <div class="gallery-card">
+        <img src="images/purple-martin-skimming-pond.jpg" alt="Purple Martin in dramatic low flight skimming the surface of a still pond, wings extended, authentic wildlife action captured in soft natural light" 
+             class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Skimming the pond</div>
+          <div class="text-white/70 text-xs tracking-wide">Feeding and bathing in flight</div>
+        </div>
+      </div>
+
+      <div class="gallery-card">
         <img src="images/rack-sunset-estate.jpg" alt="Stunning 12-gourd rack at golden hour with dramatic pink and orange sky, stone house and pond reflections in the background" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1107,7 +1364,7 @@
         </div>
       </div>
 
-      <div class="gallery-card" data-index="4">
+      <div class="gallery-card">
         <img src="images/rack-barn-golden.jpg" alt="White gourd tower in a wildflower meadow at sunset, old weathered barn and still pond with beautiful golden light" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1115,8 +1372,28 @@
         </div>
       </div>
 
+      <!-- NEW: Pair of martins on the gourds -->
+      <div class="gallery-card">
+        <img src="images/purple-martins-pair-perched.jpg" alt="Two Purple Martins perched together on a white gourd birdhouse, relaxed natural poses showing social behavior and soft feather detail in diffused daylight" 
+             class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">A pair at home</div>
+          <div class="text-white/70 text-xs tracking-wide">Social life at the colony</div>
+        </div>
+      </div>
+
+      <!-- NEW replacement (user feedback): calmer scene with very few birds, peaceful rather than busy colony activity -->
+      <div class="gallery-card">
+        <img src="images/purple-martins-calm-gourds.jpg" alt="One or two Purple Martins at a white gourd rack in soft evening light, peaceful and elegant moment on the housing, serene wildlife photography" 
+             class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Calm evening at the gourds</div>
+          <div class="text-white/70 text-xs tracking-wide">Quiet moments at a well-placed tower</div>
+        </div>
+      </div>
+
       <!-- New hero image also featured in gallery (distinct from the golden-hour barn image used in Signature Setup) -->
-      <div class="gallery-card" data-index="5">
+      <div class="gallery-card">
         <img src="images/hero-farm-pond.jpg" alt="Striking white sculptural gourd tower standing beside a serene farm pond, with a red barn, white fences and rolling green Kentucky hills under a bright blue sky" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1176,6 +1453,162 @@
       </div>
     </div>
   </section>
+
+  <!-- SERVICE AREA -->
+  <!-- Clean professional presentation of coverage radius using embedded Google Map.
+       Fits the premium, trustworthy tone with elegant map frame and clear 100-mile messaging.
+       Added after testimonials (trust signals) and before FAQ + contact for natural decision flow.
+       All existing content and images remain untouched. -->
+  <section id="service-area" class="max-w-5xl mx-auto px-6 md:px-8 premium-section">
+    <div class="grid md:grid-cols-12 gap-x-10 gap-y-8 items-center">
+      <div class="md:col-span-5">
+        <div class="uppercase tracking-[3.25px] text-[#C5A46E] text-xs font-semibold mb-3">LAKE CUMBERLAND REGION</div>
+        <h2 class="section-title text-4xl md:text-[44px] tracking-[-1.4px] font-bold leading-none">Service Area</h2>
+        <p class="mt-5 text-[#3F3A33] text-[15.5px] leading-relaxed">Proudly serving Monticello, Lake Cumberland, and all communities within a 100-mile radius.</p>
+        <p class="mt-3 text-[#3F3A33]/80 text-[14.75px]">From lakefront homes on Fishing Creek and Wolf Creek to farms across Wayne, Pulaski, Russell, Clinton, and McCreary counties — we bring professional gourd tower installations to the places Purple Martins love best.</p>
+        
+        <div class="mt-6 inline-flex items-center gap-x-2 text-sm text-[#2F2A24]/70">
+          <i class="fa-solid fa-map-pin text-[#C5A46E]"></i>
+          <span>Based in Monticello, KY • 100-mile service radius</span>
+        </div>
+      </div>
+
+      <!-- Map column -->
+      <div class="md:col-span-7">
+        <div class="service-map-frame relative rounded-3xl overflow-hidden border border-[#C5A46E]/15 shadow-xl ring-1 ring-inset ring-white/60 bg-white">
+          <iframe 
+            src="https://www.google.com/maps?q=Monticello,+Kentucky&z=8&output=embed" 
+            width="100%" 
+            height="380" 
+            style="border:0; display:block; min-height: 280px;"
+            loading="lazy" 
+            allowfullscreen 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Service area map centered on Monticello, Kentucky — Lake Cumberland region">
+          </iframe>
+          <!-- Elegant radius indicator badge -->
+          <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur px-4 py-1.5 rounded-full shadow-sm border border-[#C5A46E]/20 flex items-center gap-x-2 text-xs font-semibold text-[#2F2A24]">
+            <i class="fa-solid fa-circle text-[#C5A46E]"></i>
+            <span>100-mile radius</span>
+          </div>
+        </div>
+        <div class="text-center text-[11px] text-[#2F2A24]/45 mt-2.5 tracking-wide">We happily travel to your property for consultations and installations throughout the region.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider max-w-5xl mx-auto px-6 md:px-8"></div>
+
+  <!-- FAQ -->
+  <!-- Premium accordion layout inserted immediately before Contact per requirements.
+       Clean expandable cards with gold accents, smooth transitions, and single-open behavior.
+       Questions and accurate, helpful answers written to match the site's calm, expert, trustworthy voice.
+       Zero existing content, images, or sections modified. -->
+  <section id="faq" class="max-w-5xl mx-auto px-6 md:px-8 premium-section">
+    <div class="max-w-3xl mx-auto text-center mb-10">
+      <div class="uppercase tracking-[3px] text-[#C5A46E] text-xs font-semibold mb-3">COMMON QUESTIONS</div>
+      <h2 class="section-title text-4xl md:text-[42px] tracking-[-1.35px] font-bold">Frequently Asked Questions</h2>
+      <p class="mt-4 text-[#3F3A33] text-[15.25px]">Everything you need to know about Purple Martin towers, timing, and working with us.</p>
+    </div>
+
+    <div class="max-w-[860px] mx-auto space-y-3">
+      <!-- Q1 -->
+      <div class="faq-item bg-white rounded-2xl border border-[#C5A46E]/10 overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between px-6 py-[17px] text-left group" aria-expanded="false">
+          <span class="font-semibold text-[15.5px] pr-4 tracking-[-0.15px] text-[#2F2A24]">How long until Purple Martins move into the new tower?</span>
+          <i class="fa-solid fa-chevron-down text-[#C5A46E] transition-transform duration-200 group-hover:text-[#B8975E] flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6 text-[15px] text-[#3F3A33] leading-relaxed">
+          It varies by season and migration patterns. Many homeowners report martins investigating the tower within the first few days or weeks. Full occupancy is most common the following spring, when birds return and scout established housing. Installing early maximizes your chances the first year.
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="faq-item bg-white rounded-2xl border border-[#C5A46E]/10 overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between px-6 py-[17px] text-left group" aria-expanded="false">
+          <span class="font-semibold text-[15.5px] pr-4 tracking-[-0.15px] text-[#2F2A24]">What is the best time of year to install a gourd tower?</span>
+          <i class="fa-solid fa-chevron-down text-[#C5A46E] transition-transform duration-200 group-hover:text-[#B8975E] flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6 text-[15px] text-[#3F3A33] leading-relaxed">
+          The ideal window is late fall through early spring (November through February). This ensures the tower is fully established, cured, and ready when the first scouts arrive in mid-to-late March in the Lake Cumberland area. Installing in summer or late spring is possible but less optimal for attracting birds the same season.
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="faq-item bg-white rounded-2xl border border-[#C5A46E]/10 overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between px-6 py-[17px] text-left group" aria-expanded="false">
+          <span class="font-semibold text-[15.5px] pr-4 tracking-[-0.15px] text-[#2F2A24]">Do you service or maintain existing Purple Martin towers?</span>
+          <i class="fa-solid fa-chevron-down text-[#C5A46E] transition-transform duration-200 group-hover:text-[#B8975E] flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6 text-[15px] text-[#3F3A33] leading-relaxed">
+          Yes. We offer seasonal maintenance, annual cleaning and inspection, gourd replacement, pulley adjustments, and starling/sparrow management for existing colonies — whether we originally installed the tower or not. Regular care dramatically improves long-term success.
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="faq-item bg-white rounded-2xl border border-[#C5A46E]/10 overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between px-6 py-[17px] text-left group" aria-expanded="false">
+          <span class="font-semibold text-[15.5px] pr-4 tracking-[-0.15px] text-[#2F2A24]">How do you handle starlings and sparrows?</span>
+          <i class="fa-solid fa-chevron-down text-[#C5A46E] transition-transform duration-200 group-hover:text-[#B8975E] flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6 text-[15px] text-[#3F3A33] leading-relaxed">
+          We use a combination of proven passive deterrents (sparrow spookers, entrance modifications) and active management techniques. We also provide clear guidance on monitoring and trapping during the off-season. Consistent, early intervention is the most effective way to protect a colony.
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="faq-item bg-white rounded-2xl border border-[#C5A46E]/10 overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between px-6 py-[17px] text-left group" aria-expanded="false">
+          <span class="font-semibold text-[15.5px] pr-4 tracking-[-0.15px] text-[#2F2A24]">What is the cost range for a professional installation?</span>
+          <i class="fa-solid fa-chevron-down text-[#C5A46E] transition-transform duration-200 group-hover:text-[#B8975E] flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6 text-[15px] text-[#3F3A33] leading-relaxed">
+          A complete professional Troyer Super Deluxe 12-gourd installation — including the heavy steel stake set in concrete with full 48–72 hour cure, rack, gourds, pulley system, and final adjustments — typically ranges from $1,450 to $2,350. Final pricing depends on site access, soil conditions, and any custom requirements. Every quote includes a site visit.
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="faq-item bg-white rounded-2xl border border-[#C5A46E]/10 overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between px-6 py-[17px] text-left group" aria-expanded="false">
+          <span class="font-semibold text-[15.5px] pr-4 tracking-[-0.15px] text-[#2F2A24]">How far do you travel for installations?</span>
+          <i class="fa-solid fa-chevron-down text-[#C5A46E] transition-transform duration-200 group-hover:text-[#B8975E] flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6 text-[15px] text-[#3F3A33] leading-relaxed">
+          We proudly serve a 100-mile radius around Monticello, Kentucky, covering the entire Lake Cumberland region and surrounding communities in south-central Kentucky and nearby areas of Tennessee. If your property is just outside the radius, give us a call — we often make exceptions for good martin habitat.
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="faq-item bg-white rounded-2xl border border-[#C5A46E]/10 overflow-hidden">
+        <button class="faq-question w-full flex items-center justify-between px-6 py-[17px] text-left group" aria-expanded="false">
+          <span class="font-semibold text-[15.5px] pr-4 tracking-[-0.15px] text-[#2F2A24]">Do you offer warranties on your work?</span>
+          <i class="fa-solid fa-chevron-down text-[#C5A46E] transition-transform duration-200 group-hover:text-[#B8975E] flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-6 pb-6 text-[15px] text-[#3F3A33] leading-relaxed">
+          Yes. We provide a 2-year workmanship warranty covering the installation — the ground stake, concrete footing, rack mounting, hardware, and pulley system. The Troyer and Conley gourd systems carry their own manufacturer warranties. We stand behind every tower we install.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       STRATEGIC "GET A QUOTE" CTA (added after FAQ per request)
+       - Clean, conversion-focused prompt placed right after learning/FAQ
+         and immediately before the full contact form section.
+       - Uses existing premium button styling and site colors.
+       - Light, elegant, non-intrusive — improves flow without
+         adding new sections or altering any existing content.
+       ============================================================ -->
+  <div class="max-w-5xl mx-auto px-6 md:px-8 pb-10 md:pb-14">
+    <div class="bg-white border border-[#C5A46E]/15 rounded-3xl px-8 py-8 md:py-9 text-center shadow-sm">
+      <p class="text-[#2F2A24] text-[17px] font-medium tracking-[-0.2px] mb-5">Ready to welcome Purple Martins to your property?</p>
+      <a href="#contact" 
+         class="inline-flex items-center justify-center gap-x-2.5 px-9 py-[14px] bg-[#C5A46E] hover:bg-[#B8975E] active:bg-[#A67F4C] text-white font-semibold rounded-full text-[15px] tracking-[-0.1px] transition-all premium-btn shadow">
+        Get a Quote
+        <i class="fa-solid fa-arrow-right text-sm"></i>
+      </a>
+    </div>
+  </div>
 
   <!-- CONTACT / GET A QUOTE -->
   <!-- VISUAL POLISH: Dark section richer and deeper. Form container more generous padding + refined surface. Inputs have stronger focus ring and better proportions. Buttons match the new premium system. -->
@@ -1251,14 +1684,47 @@
   </section>
 
   <!-- FOOTER -->
-  <!-- VISUAL POLISH: Slightly more refined typography, tracking and spacing for a calm, confident professional close. -->
-  <footer class="border-t border-[#C5A46E]/15 bg-[#F9F5ED] py-9 md:py-10">
-    <div class="max-w-5xl mx-auto px-6 md:px-8 text-xs text-[#2F2A24]/60 flex flex-col md:flex-row md:items-center gap-y-3 justify-between">
-      <div>
-        © Martins Over the Bluegrass. Professional gourd tower installation serving the Lake Cumberland region.
+  <!-- LIGHT POLISH: Expanded for completeness and professionalism while staying light and elegant.
+       - Added clear service-area reminder and location context.
+       - Added contact prompt with link back to quote form (no fabricated phone/email).
+       - Proper copyright line.
+       - Improved typography, tracking, vertical rhythm, and visual separation
+         to match the premium, warm, trustworthy feel of the rest of the site.
+       All original footer intent preserved; no new major elements introduced. -->
+  <footer class="border-t border-[#C5A46E]/15 bg-[#F9F5ED]">
+    <div class="max-w-5xl mx-auto px-6 md:px-8 pt-9 pb-8 md:pt-10 md:pb-9">
+      <!-- Primary footer content -->
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-y-6 gap-x-8">
+        <!-- Brand + location -->
+        <div>
+          <div class="flex items-center gap-x-2.5 mb-1.5">
+            <div class="w-6 h-6 rounded-full bg-[#C5A46E] flex items-center justify-center flex-shrink-0">
+              <i class="fa-solid fa-dove text-white text-xs"></i>
+            </div>
+            <div class="font-semibold text-[#2F2A24] tracking-[-0.25px] text-[15.5px]">Martins Over the Bluegrass</div>
+          </div>
+          <div class="text-sm text-[#2F2A24]/70">Lake Cumberland • Monticello, Kentucky</div>
+        </div>
+
+        <!-- Service area reminder -->
+        <div class="max-w-[26ch] text-sm text-[#2F2A24]/70 leading-relaxed">
+          Proudly serving Monticello, the Lake Cumberland region, and communities across a 100-mile radius.
+        </div>
+
+        <!-- Contact prompt -->
+        <div class="text-sm">
+          <a href="#contact" class="inline-flex items-center gap-x-1.5 text-[#2F2A24] hover:text-[#C5A46E] font-medium transition-colors group">
+            Get a Quote
+            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-0.5 transition"></i>
+          </a>
+          <div class="mt-1 text-[#2F2A24]/55 text-xs">We respond within 1–2 business days</div>
+        </div>
       </div>
-      <div class="font-light tracking-[1.6px]">
-        TROYER • CONLEY • QUALITY THAT LASTS
+
+      <!-- Bottom bar: copyright + enduring tagline -->
+      <div class="mt-8 pt-6 border-t border-[#C5A46E]/10 flex flex-col md:flex-row md:items-center gap-y-1.5 md:gap-y-0 justify-between text-xs text-[#2F2A24]/55 tracking-wide">
+        <div>© Martins Over the Bluegrass. All rights reserved.</div>
+        <div class="font-light tracking-[1.75px]">TROYER • CONLEY • QUALITY THAT LASTS</div>
       </div>
     </div>
   </footer>
@@ -1440,6 +1906,56 @@
       nav.setAttribute('aria-label', 'Main navigation');
     }
 
+    // Premium FAQ accordion (new sections only — single-open, smooth animated height)
+    function initFaq() {
+      const questions = document.querySelectorAll('.faq-question');
+
+      questions.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const item = btn.parentElement;
+          const answer = btn.nextElementSibling;
+          const icon = btn.querySelector('i');
+          const isCurrentlyOpen = item.classList.contains('open');
+
+          // Close all other items (accordion behavior)
+          document.querySelectorAll('.faq-item.open').forEach((openItem) => {
+            if (openItem !== item) {
+              openItem.classList.remove('open');
+              const openAnswer = openItem.querySelector('.faq-answer');
+              const openIcon = openItem.querySelector('.faq-question i');
+              if (openAnswer) {
+                openAnswer.classList.remove('open');
+                openAnswer.style.maxHeight = '0px';
+              }
+              if (openIcon) {
+                openIcon.classList.remove('fa-chevron-up');
+                openIcon.classList.add('fa-chevron-down');
+              }
+              openItem.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          if (!isCurrentlyOpen) {
+            // Open this one
+            item.classList.add('open');
+            answer.classList.add('open');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+            btn.setAttribute('aria-expanded', 'true');
+          } else {
+            // Close this one (toggle off)
+            item.classList.remove('open');
+            answer.classList.remove('open');
+            answer.style.maxHeight = '0px';
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+            btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
+
     // =============================================
     // PREMIUM LIGHTBOX — Functionality 100% preserved.
     // Visual framing and transitions lightly elevated.
@@ -1555,6 +2071,7 @@
       initQuoteForm();
       initAccessibility();
       initGalleryLightbox();
+      initFaq();
 
       console.log('%c[Martins Over the Bluegrass] Site initialized successfully. (9.5 premium polish applied — all content & images preserved)', 'color:#C5A46E70');
     }

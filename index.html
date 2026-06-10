@@ -53,6 +53,45 @@
 
   <!--
     ============================================================
+    PURPLE MARTIN MIGRATION COUNTDOWN — ADDITION SUMMARY
+    ============================================================
+    Added: A tasteful, elegant, premium live countdown to March 15
+           (auto-adjusting to the next appropriate year).
+
+    Location in document:
+      • Section HTML inserted *immediately after* the closing 
+        </section> of "Our Installation Process" (#process) and 
+        before the subsequent divider + "Our Setup" section.
+      • This places it after the detailed explanation of why proper 
+        timing and the 48–72 hour concrete cure matter, and well 
+        before the FAQ (as requested for flow).
+
+    Why this placement:
+      Visitors first learn the craftsmanship and patience required 
+      for a lasting installation → they then see the real calendar 
+      pressure of migration → they are encouraged (calmly) to book 
+      in time via a direct, styled CTA to #contact.
+
+    Implementation notes:
+      - Zero existing content, images, navigation, lightbox, FAQ 
+        accordion, form, or any prior functionality was removed or 
+        altered.
+      - Styling uses only the site's existing tokens and classes 
+        (#C5A46E, rounded-3xl, luxury-surface, premium-btn, 
+        section-title, premium-section, .stat, etc.).
+      - Countdown is 4 clean columns (Days/Hours/Minutes/Seconds), 
+        large elegant tabular numbers, helpful non-pushy copy.
+      - JavaScript: startMigrationCountdown() defined in the main 
+        <script> block at the bottom and called from init().
+      - Target date logic always resolves to the next March 15.
+
+    This addition maintains the calm, professional, 9.5/10 
+    Kentucky-craftsmanship feeling of the entire site.
+    ============================================================
+  -->
+
+  <!--
+    ============================================================
     LIGHT TARGETED POLISH (strictly limited scope)
     ============================================================
     All changes below are additive refinements only. No existing 
@@ -995,6 +1034,86 @@
       <div class="inline-flex items-center gap-x-2 text-sm text-[#3F3A33]/70">
         <i class="fa-solid fa-leaf text-[#C5A46E]"></i>
         <span>The result is a stable, beautiful tower ready for years of martins — and years of quiet satisfaction for you.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PURPLE MARTIN MIGRATION COUNTDOWN (added)
+       ============================================================
+       Placement: Inserted *immediately after* the "Our Installation Process" 
+       section (</section> above) and well before the FAQ section.
+       
+       Purpose & flow (as requested): After visitors learn the importance of 
+       proper timing, the patient 48–72 hour concrete curing process, and why 
+       rushing foundation work fails, they see a calm, elegant, real-time 
+       reminder of when the birds actually arrive in the Lake Cumberland area.
+       
+       This creates a natural, helpful progression: understand the craftsmanship 
+       required → recognize the narrow seasonal window → feel encouraged to 
+       book while there is still time for a properly cured installation before 
+       mid-March.
+       
+       Design: Strictly follows the site's premium, warm, Kentucky-craftsmanship 
+       aesthetic — #C5A46E gold accents, rounded-3xl surfaces, luxury-surface 
+       treatment, section-title typography, premium-btn styling, generous 
+       whitespace, subtle shadows, clean Inter + Playfair hierarchy.
+       
+       Visual character: Quiet, professional, trustworthy, and calm. Large but 
+       elegant tabular numbers in a 4-column grid. Benefit-focused supporting 
+       copy. One strong CTA that uses the existing #contact smooth-scroll.
+       
+       Target date: March 15 of the current year (if still in the future) or 
+       the following year. Fully automatic rollover. Updates every second.
+       
+       All existing content, images (including process photo), sections (#setup, 
+       #why, #martins, gallery, testimonials, service-area, FAQ accordion), 
+       navigation, lightbox, form handling, and every other script/behavior 
+       remain 100% untouched and unbroken.
+       
+       The startMigrationCountdown() function lives with the other scripts 
+       at the bottom of this file and is initialized in init().
+  ============================================================ -->
+  <section id="migration-countdown" class="max-w-5xl mx-auto px-6 md:px-8 premium-section">
+    <div class="max-w-3xl mx-auto text-center mb-9">
+      <div class="uppercase tracking-[3px] text-[#C5A46E] text-xs font-semibold mb-3">MIGRATION SEASON APPROACHING</div>
+      <h2 class="section-title text-4xl md:text-[42px] tracking-[-1.35px] font-bold leading-none">Purple Martins Return in</h2>
+      <p class="mt-4 text-[#3F3A33] text-[15.5px] leading-relaxed max-w-[55ch] mx-auto">
+        In southern Kentucky, the first Purple Martin scouts usually arrive mid-March. 
+        Installing now gives the concrete time to cure and the tower time to settle before the birds begin scouting for housing.
+      </p>
+    </div>
+
+    <div class="max-w-[860px] mx-auto">
+      <div class="bg-white rounded-3xl px-6 py-8 md:px-10 md:py-9 shadow-sm border border-[#C5A46E]/12 luxury-surface">
+        <!-- Clean 4-column live countdown -->
+        <div class="grid grid-cols-4 gap-3 sm:gap-5 text-center">
+          <div>
+            <div id="cd-days" class="stat font-bold text-[42px] sm:text-[52px] md:text-[58px] tracking-[-2px] text-[#2F2A24] tabular-nums leading-none">00</div>
+            <div class="mt-2 text-[10px] tracking-[2.25px] font-medium text-[#2F2A24]/55">DAYS</div>
+          </div>
+          <div>
+            <div id="cd-hours" class="stat font-bold text-[42px] sm:text-[52px] md:text-[58px] tracking-[-2px] text-[#2F2A24] tabular-nums leading-none">00</div>
+            <div class="mt-2 text-[10px] tracking-[2.25px] font-medium text-[#2F2A24]/55">HOURS</div>
+          </div>
+          <div>
+            <div id="cd-minutes" class="stat font-bold text-[42px] sm:text-[52px] md:text-[58px] tracking-[-2px] text-[#2F2A24] tabular-nums leading-none">00</div>
+            <div class="mt-2 text-[10px] tracking-[2.25px] font-medium text-[#2F2A24]/55">MINUTES</div>
+          </div>
+          <div>
+            <div id="cd-seconds" class="stat font-bold text-[42px] sm:text-[52px] md:text-[58px] tracking-[-2px] text-[#2F2A24] tabular-nums leading-none">00</div>
+            <div class="mt-2 text-[10px] tracking-[2.25px] font-medium text-[#2F2A24]/55">SECONDS</div>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-col items-center">
+          <a href="#contact" 
+             class="inline-flex items-center justify-center gap-x-2.5 px-9 py-[15px] bg-[#C5A46E] hover:bg-[#B8975E] active:bg-[#A67F4C] text-white font-semibold rounded-full text-[15px] tracking-[-0.1px] transition-all premium-btn shadow">
+            Reserve Your Spot Before March
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </a>
+          <p class="text-center text-xs text-[#2F2A24]/55 mt-4 max-w-xs">A properly cured tower installed before migration gives you the strongest chance of a thriving colony this season.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -1955,6 +2074,66 @@
       });
     }
 
+    // ============================================================
+    // Purple Martin Migration Countdown (new)
+    // Auto-targets the next March 15 (rolls over after the date passes).
+    // Clean 1-second updates. Graceful if elements are missing.
+    // Called from init(). Matches the calm, premium tone of the site.
+    // ============================================================
+    let migrationCountdownInterval = null;
+
+    function startMigrationCountdown() {
+      const daysEl = document.getElementById('cd-days');
+      const hoursEl = document.getElementById('cd-hours');
+      const minutesEl = document.getElementById('cd-minutes');
+      const secondsEl = document.getElementById('cd-seconds');
+
+      if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+      function getTargetDate() {
+        const now = new Date();
+        let year = now.getFullYear();
+        let target = new Date(year, 2, 15, 0, 0, 0); // March 15 at midnight local time
+
+        // If today is on or after March 15 this year, target next year
+        if (now >= target) {
+          target = new Date(year + 1, 2, 15, 0, 0, 0);
+        }
+        return target;
+      }
+
+      function updateCountdown() {
+        const target = getTargetDate();
+        const now = new Date();
+        let diff = Math.max(0, target.getTime() - now.getTime());
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -= days * (1000 * 60 * 60 * 24);
+
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hours * (1000 * 60 * 60);
+
+        const minutes = Math.floor(diff / (1000 * 60));
+        diff -= minutes * (1000 * 60);
+
+        const seconds = Math.floor(diff / 1000);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+      }
+
+      // Initial paint
+      updateCountdown();
+
+      // Clear any prior interval (defensive) and start fresh
+      if (migrationCountdownInterval) {
+        clearInterval(migrationCountdownInterval);
+      }
+      migrationCountdownInterval = setInterval(updateCountdown, 1000);
+    }
+
     // =============================================
     // PREMIUM LIGHTBOX — Functionality 100% preserved.
     // Visual framing and transitions lightly elevated.
@@ -2071,6 +2250,7 @@
       initAccessibility();
       initGalleryLightbox();
       initFaq();
+      startMigrationCountdown(); // new — elegant March 15 migration countdown (placed after Process section)
 
       console.log('%c[Martins Over the Bluegrass] Site initialized successfully. (9.5 premium polish applied — all content & images preserved)', 'color:#C5A46E70');
     }

@@ -460,6 +460,49 @@
       background: linear-gradient(to top, rgba(0,0,0,0.90) 0%, rgba(0,0,0,0.0) 68%);
     }
 
+    /* Gallery category tabs — additive only; matches site gold tokens */
+    .gallery-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .gallery-tab {
+      padding: 0.5rem 1.125rem;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      border: 1px solid rgba(47, 42, 36, 0.12);
+      background: #fff;
+      color: #2F2A24;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.32, 0.01, 0.22, 1);
+    }
+    .gallery-tab:hover {
+      border-color: rgba(197, 164, 110, 0.45);
+      color: #2F2A24;
+    }
+    .gallery-tab.active {
+      background: #C5A46E;
+      color: #fff;
+      border-color: #C5A46E;
+      box-shadow: 0 4px 14px -4px rgba(197, 164, 110, 0.45);
+    }
+    .gallery-card.is-hidden {
+      display: none !important;
+    }
+    .gallery-empty-msg {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: rgba(47, 42, 36, 0.5);
+      font-size: 0.875rem;
+    }
+    .gallery-empty-msg.is-visible {
+      display: block;
+    }
+
     /* =========================================================
        9.5/10 PREMIUM BUTTONS — Confident, crafted, never flashy
        =========================================================
@@ -1486,10 +1529,21 @@
       <div class="hidden md:block text-sm text-[#2F2A24]/55">Click any photo to view full size</div>
     </div>
 
+    <!-- Category tabs — new photos grouped; original gallery cards remain in All -->
+    <div class="gallery-tabs" role="tablist" aria-label="Gallery categories">
+      <button type="button" class="gallery-tab active" role="tab" aria-selected="true" data-filter="all">All</button>
+      <button type="button" class="gallery-tab" role="tab" aria-selected="false" data-filter="installed-towers">Installed Towers</button>
+      <button type="button" class="gallery-tab" role="tab" aria-selected="false" data-filter="purple-martin-sightings">Purple Martin Sightings</button>
+      <button type="button" class="gallery-tab" role="tab" aria-selected="false" data-filter="golden-hour-views">Golden Hour Views</button>
+      <button type="button" class="gallery-tab" role="tab" aria-selected="false" data-filter="multiple-installations">Multiple Installations</button>
+    </div>
+
+    <p id="gallery-empty-msg" class="gallery-empty-msg" aria-live="polite">Photos coming soon for this category.</p>
+
     <!-- Masonry grid (CSS columns for natural, high-end photography layout) -->
-    <div class="gallery-masonry">
+    <div class="gallery-masonry" id="gallery-grid">
       <!-- Business card images - kept prominent -->
-      <div class="gallery-card" data-index="0">
+      <div class="gallery-card" data-gallery-category="original" data-index="0">
         <img src="images/front-card.jpg" alt="Business card photo showing white gourd rack with Purple Martins against blue sky — Martins Over the Bluegrass branding visible" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/75 to-transparent p-5 gallery-label">
@@ -1498,7 +1552,7 @@
         </div>
       </div>
 
-      <div class="gallery-card" data-index="1">
+      <div class="gallery-card" data-gallery-category="original" data-index="1">
         <img src="images/back-card.jpg" alt="Business card photo of the gourd tower at sunset over water with flying martins and Martins Over the Bluegrass branding" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/75 to-transparent p-5 gallery-label">
@@ -1512,7 +1566,7 @@
            Images only added — no original gallery cards, order logic, or captions were modified. -->
 
       <!-- Artistic bird study -->
-      <div class="gallery-card" data-index="2">
+      <div class="gallery-card" data-gallery-category="original" data-index="2">
         <img src="images/purple-martin-closeup.jpg" alt="Ultra-detailed closeup of a male Purple Martin’s head and iridescent plumage, National Geographic level sharpness and feather texture under natural light" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1522,7 +1576,7 @@
       </div>
 
       <!-- New installation photography -->
-      <div class="gallery-card" data-index="3">
+      <div class="gallery-card" data-gallery-category="original" data-index="3">
         <img src="images/rack-pond-clear.jpg" alt="Troyer 12-gourd martin rack on a polished metal pole beside a calm blue pond, bright clear day with perfect reflections" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1531,7 +1585,7 @@
       </div>
 
       <!-- NEW: Purple Martin skimming flight -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-gallery-category="original">
         <img src="images/purple-martin-skimming-pond.jpg" alt="Purple Martin in dramatic low flight skimming the surface of a still pond, wings extended, authentic wildlife action captured in soft natural light" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1540,7 +1594,7 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-gallery-category="original">
         <img src="images/rack-sunset-estate.jpg" alt="Stunning 12-gourd rack at golden hour with dramatic pink and orange sky, stone house and pond reflections in the background" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1548,7 +1602,7 @@
         </div>
       </div>
 
-      <div class="gallery-card">
+      <div class="gallery-card" data-gallery-category="original">
         <img src="images/rack-barn-golden.jpg" alt="White gourd tower in a wildflower meadow at sunset, old weathered barn and still pond with beautiful golden light" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1557,7 +1611,7 @@
       </div>
 
       <!-- NEW: Pair of martins on the gourds -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-gallery-category="original">
         <img src="images/purple-martins-pair-perched.jpg" alt="Two Purple Martins perched together on a white gourd birdhouse, relaxed natural poses showing social behavior and soft feather detail in diffused daylight" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1567,7 +1621,7 @@
       </div>
 
       <!-- NEW replacement (user feedback): calmer scene with very few birds, peaceful rather than busy colony activity -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-gallery-category="original">
         <img src="images/purple-martins-calm-gourds.jpg" alt="One or two Purple Martins at a white gourd rack in soft evening light, peaceful and elegant moment on the housing, serene wildlife photography" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
@@ -1577,11 +1631,250 @@
       </div>
 
       <!-- New hero image also featured in gallery (distinct from the golden-hour barn image used in Signature Setup) -->
-      <div class="gallery-card">
+      <div class="gallery-card" data-gallery-category="original">
         <img src="images/hero-farm-pond.jpg" alt="Striking white sculptural gourd tower standing beside a serene farm pond, with a red barn, white fences and rolling green Kentucky hills under a bright blue sky" 
              class="w-full h-auto object-cover" loading="lazy" decoding="async">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
           <div class="text-white text-sm font-medium tracking-[-0.1px]">Classic farm pond colony</div>
+        </div>
+      </div>
+
+      <!-- NEW: User-provided motb-photos — images only added; existing cards above untouched -->
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-01-480w.webp 480w, images/gallery/installed-towers/installed-towers-01-768w.webp 768w, images/gallery/installed-towers/installed-towers-01-880w.webp 880w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-01-880w.jpg" srcset="images/gallery/installed-towers/installed-towers-01-480w.jpg 480w, images/gallery/installed-towers/installed-towers-01-768w.jpg 768w, images/gallery/installed-towers/installed-towers-01-880w.jpg 880w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-01-full.webp"
+               alt="White gourd tower with Purple Martins perched and flying in an open Kentucky field"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Tower installation in open pasture</div>
+          <div class="text-white/70 text-xs tracking-wide">Martins Over the Bluegrass installation</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-02-480w.webp 480w, images/gallery/installed-towers/installed-towers-02-752w.webp 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-02-752w.jpg" srcset="images/gallery/installed-towers/installed-towers-02-480w.jpg 480w, images/gallery/installed-towers/installed-towers-02-752w.jpg 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-02-full.webp"
+               alt="Purple Martin gourd tower standing in a grassy field with a bird in flight overhead"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Gourd tower in rural pasture</div>
+          <div class="text-white/70 text-xs tracking-wide">Lake Cumberland region</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-03-480w.webp 480w, images/gallery/installed-towers/installed-towers-03-768w.webp 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-03-768w.jpg" srcset="images/gallery/installed-towers/installed-towers-03-480w.jpg 480w, images/gallery/installed-towers/installed-towers-03-768w.jpg 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-03-full.webp"
+               alt="White multi-gourd Purple Martin tower on a metal pole against blue sky and rolling green hills"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Completed tower installation</div>
+          <div class="text-white/70 text-xs tracking-wide">Professional gourd rack setup</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-04-480w.webp 480w, images/gallery/installed-towers/installed-towers-04-768w.webp 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-04-768w.jpg" srcset="images/gallery/installed-towers/installed-towers-04-480w.jpg 480w, images/gallery/installed-towers/installed-towers-04-768w.jpg 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-04-full.webp"
+               alt="Troyer-style white gourd rack installed on a tall pole in a Kentucky grassland setting"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Standalone gourd tower</div>
+          <div class="text-white/70 text-xs tracking-wide">Field installation</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-05-480w.webp 480w, images/gallery/installed-towers/installed-towers-05-768w.webp 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-05-768w.jpg" srcset="images/gallery/installed-towers/installed-towers-05-480w.jpg 480w, images/gallery/installed-towers/installed-towers-05-768w.jpg 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-05-full.webp"
+               alt="Purple Martin housing cluster mounted atop a steel pole in open countryside with forest backdrop"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Rural tower placement</div>
+          <div class="text-white/70 text-xs tracking-wide">Kentucky bluegrass country</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-06-480w.webp 480w, images/gallery/installed-towers/installed-towers-06-768w.webp 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-06-768w.jpg" srcset="images/gallery/installed-towers/installed-towers-06-480w.jpg 480w, images/gallery/installed-towers/installed-towers-06-768w.jpg 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-06-full.webp"
+               alt="White gourd tower in an open field with Purple Martins flying and perched on the structure"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Active colony installation</div>
+          <div class="text-white/70 text-xs tracking-wide">Birds at home on the gourds</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-07-480w.webp 480w, images/gallery/installed-towers/installed-towers-07-752w.webp 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-07-752w.jpg" srcset="images/gallery/installed-towers/installed-towers-07-480w.jpg 480w, images/gallery/installed-towers/installed-towers-07-752w.jpg 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-07-full.webp"
+               alt="Single-pole Purple Martin gourd tower rising above a green pasture under bright clouds"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Pasture installation</div>
+          <div class="text-white/70 text-xs tracking-wide">Clean, lasting setup</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-08-480w.webp 480w, images/gallery/installed-towers/installed-towers-08-752w.webp 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-08-752w.jpg" srcset="images/gallery/installed-towers/installed-towers-08-480w.jpg 480w, images/gallery/installed-towers/installed-towers-08-752w.jpg 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-08-full.webp"
+               alt="White gourd birdhouses arranged on a metal rack at the top of an installed tower pole"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Multi-gourd rack mounted</div>
+          <div class="text-white/70 text-xs tracking-wide">Ready for spring arrivals</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-09-480w.webp 480w, images/gallery/installed-towers/installed-towers-09-768w.webp 768w, images/gallery/installed-towers/installed-towers-09-880w.webp 880w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-09-880w.jpg" srcset="images/gallery/installed-towers/installed-towers-09-480w.jpg 480w, images/gallery/installed-towers/installed-towers-09-768w.jpg 768w, images/gallery/installed-towers/installed-towers-09-880w.jpg 880w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-09-full.webp"
+               alt="Purple Martin gourd tower installed in rolling Kentucky terrain with treeline behind"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Hillside field installation</div>
+          <div class="text-white/70 text-xs tracking-wide">Thoughtful site placement</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-10-480w.webp 480w, images/gallery/installed-towers/installed-towers-10-768w.webp 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-10-768w.jpg" srcset="images/gallery/installed-towers/installed-towers-10-480w.jpg 480w, images/gallery/installed-towers/installed-towers-10-768w.jpg 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-10-full.webp"
+               alt="White gourd-style Purple Martin tower with birds perched on the house in a green field"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Tower with perched martins</div>
+          <div class="text-white/70 text-xs tracking-wide">Single-pole installation</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-11-480w.webp 480w, images/gallery/installed-towers/installed-towers-11-752w.webp 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-11-752w.jpg" srcset="images/gallery/installed-towers/installed-towers-11-480w.jpg 480w, images/gallery/installed-towers/installed-towers-11-752w.jpg 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-11-full.webp"
+               alt="Tall metal pole with white gourd cluster standing in open grass near wooded Kentucky hills"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Open-field tower</div>
+          <div class="text-white/70 text-xs tracking-wide">Built for Kentucky weather</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="installed-towers">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/installed-towers/installed-towers-12-480w.webp 480w, images/gallery/installed-towers/installed-towers-12-768w.webp 768w, images/gallery/installed-towers/installed-towers-12-880w.webp 880w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/installed-towers/installed-towers-12-880w.jpg" srcset="images/gallery/installed-towers/installed-towers-12-480w.jpg 480w, images/gallery/installed-towers/installed-towers-12-768w.jpg 768w, images/gallery/installed-towers/installed-towers-12-880w.jpg 880w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/installed-towers/installed-towers-12-full.webp"
+               alt="White multi-gourd Purple Martin tower in a wide grassy field with martins flying nearby"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Classic field installation</div>
+          <div class="text-white/70 text-xs tracking-wide">Full-height tower view</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="purple-martin-sightings">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-01-480w.webp 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-01-768w.webp 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/purple-martin-sightings/purple-martin-sightings-01-768w.jpg" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-01-480w.jpg 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-01-768w.jpg 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/purple-martin-sightings/purple-martin-sightings-01-full.webp"
+               alt="Purple Martins flying around a white gourd tower in a grassy Kentucky field under blue sky"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Martins circling the colony</div>
+          <div class="text-white/70 text-xs tracking-wide">Active aerial activity</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="purple-martin-sightings">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-02-480w.webp 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-02-752w.webp 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/purple-martin-sightings/purple-martin-sightings-02-752w.jpg" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-02-480w.jpg 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-02-752w.jpg 752w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/purple-martin-sightings/purple-martin-sightings-02-full.webp"
+               alt="Dark Purple Martins in flight approaching a white gourd tower against bright clouds"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Birds returning to the gourds</div>
+          <div class="text-white/70 text-xs tracking-wide">Colony in motion</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="purple-martin-sightings">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-03-480w.webp 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-03-768w.webp 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/purple-martin-sightings/purple-martin-sightings-03-768w.jpg" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-03-480w.jpg 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-03-768w.jpg 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/purple-martin-sightings/purple-martin-sightings-03-full.webp"
+               alt="Multiple Purple Martins flying around a gourd tower installed on a metal pole"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Busy evening approach</div>
+          <div class="text-white/70 text-xs tracking-wide">Signs of a thriving colony</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="purple-martin-sightings">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-04-480w.webp 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-04-768w.webp 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/purple-martin-sightings/purple-martin-sightings-04-768w.jpg" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-04-480w.jpg 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-04-768w.jpg 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/purple-martin-sightings/purple-martin-sightings-04-full.webp"
+               alt="Purple Martin in flight near a white gourd rack with rolling green hills behind"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Aerial display at the tower</div>
+          <div class="text-white/70 text-xs tracking-wide">Wildlife in action</div>
+        </div>
+      </div>
+
+      <div class="gallery-card" data-gallery-category="purple-martin-sightings">
+        <picture>
+          <source type="image/webp" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-05-480w.webp 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-05-768w.webp 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw">
+          <img src="images/gallery/purple-martin-sightings/purple-martin-sightings-05-768w.jpg" srcset="images/gallery/purple-martin-sightings/purple-martin-sightings-05-480w.jpg 480w, images/gallery/purple-martin-sightings/purple-martin-sightings-05-768w.jpg 768w" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+               data-full-src="images/gallery/purple-martin-sightings/purple-martin-sightings-05-full.webp"
+               alt="Purple Martins flying around a white gourd tower in open Kentucky countryside"
+               class="w-full h-auto object-cover" loading="lazy" decoding="async">
+        </picture>
+        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/68 to-transparent p-5 gallery-label">
+          <div class="text-white text-sm font-medium tracking-[-0.1px]">Colony activity overhead</div>
+          <div class="text-white/70 text-xs tracking-wide">Martins at their summer home</div>
         </div>
       </div>
     </div>
@@ -2203,38 +2496,86 @@
     }
 
     // =============================================
-    // PREMIUM LIGHTBOX — Functionality 100% preserved.
-    // Visual framing and transitions lightly elevated.
+    // PREMIUM LIGHTBOX — Functionality preserved; scoped to visible tab.
     // =============================================
     let lightboxImages = [];
     let currentLightboxIndex = 0;
+    let activeGalleryFilter = 'all';
 
-    function initGalleryLightbox() {
-      const cards = document.querySelectorAll('.gallery-card');
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImage = document.getElementById('lightbox-image');
-      const lightboxCaption = document.getElementById('lightbox-caption');
-      const lightboxCounter = document.getElementById('lightbox-counter');
-      const btnClose = document.getElementById('lightbox-close');
-      const btnPrev = document.getElementById('lightbox-prev');
-      const btnNext = document.getElementById('lightbox-next');
+    function getVisibleGalleryCards() {
+      return Array.from(document.querySelectorAll('.gallery-card')).filter(
+        (card) => !card.classList.contains('is-hidden')
+      );
+    }
 
-      // Build array from the gallery cards (preserves exact order and data)
-      lightboxImages = Array.from(cards).map((card, index) => {
+    function buildLightboxImages() {
+      return getVisibleGalleryCards().map((card) => {
         const img = card.querySelector('img');
         const label = card.querySelector('.gallery-label');
         const captionEl = label ? label.querySelector('.text-white.text-sm') : null;
         return {
-          src: img.getAttribute('src'),
+          src: img.dataset.fullSrc || img.getAttribute('src'),
           alt: img.getAttribute('alt') || '',
           caption: captionEl ? captionEl.textContent.trim() : ''
         };
       });
+    }
+
+    function applyGalleryFilter(filter) {
+      activeGalleryFilter = filter;
+      const cards = document.querySelectorAll('.gallery-card');
+      const emptyMsg = document.getElementById('gallery-empty-msg');
+      const grid = document.getElementById('gallery-grid');
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const category = card.dataset.galleryCategory || 'original';
+        const show = filter === 'all' || category === filter;
+        card.classList.toggle('is-hidden', !show);
+        if (show) visibleCount += 1;
+      });
+
+      if (emptyMsg) {
+        emptyMsg.classList.toggle('is-visible', visibleCount === 0);
+      }
+      if (grid) {
+        grid.style.display = visibleCount === 0 ? 'none' : '';
+      }
+
+      lightboxImages = buildLightboxImages();
+    }
+
+    function initGalleryTabs() {
+      const tabs = document.querySelectorAll('.gallery-tab');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const filter = tab.dataset.filter;
+          tabs.forEach((t) => {
+            const isActive = t === tab;
+            t.classList.toggle('active', isActive);
+            t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+          applyGalleryFilter(filter);
+        });
+      });
+      applyGalleryFilter('all');
+    }
+
+    function initGalleryLightbox() {
+      const cards = document.querySelectorAll('.gallery-card');
+      const lightbox = document.getElementById('lightbox');
+      const btnClose = document.getElementById('lightbox-close');
+      const btnPrev = document.getElementById('lightbox-prev');
+      const btnNext = document.getElementById('lightbox-next');
+
+      lightboxImages = buildLightboxImages();
 
       // Attach click handlers to all gallery cards
-      cards.forEach((card, index) => {
+      cards.forEach((card) => {
         card.addEventListener('click', () => {
-          openLightbox(index);
+          const visible = getVisibleGalleryCards();
+          const index = visible.indexOf(card);
+          if (index >= 0) openLightbox(index);
         });
       });
 
@@ -2316,6 +2657,7 @@
       initSmoothScroll();
       initQuoteForm();
       initAccessibility();
+      initGalleryTabs();
       initGalleryLightbox();
       initFaq();
       startMigrationCountdown(); // new — elegant March 15 migration countdown (placed after Process section)
